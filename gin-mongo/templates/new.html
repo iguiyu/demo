@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>创建用户</title>
+		<script src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js?v=1"></script>
+		<style>
+			tr {
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>创建用户</h2>
+
+		<form action="/user" method="POST">
+			<label>姓名</label>
+			<input type="text" name="name"> <br>
+
+			<label>邮箱</label>
+			<input type="email" name="email"> <br><br>
+
+			<input type="submit" value="提交">
+		</form>
+
+	</body>
+</html>

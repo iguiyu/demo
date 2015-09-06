@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>所有用户</title>
+		<script src="http://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js?v=1"></script>
+		<style>
+			tr {
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>所有用户</h2>
+		<p><a href="/new">添加用户</a></p>
+		<table border="1" style="width: 800px">
+			<tr>
+				<th>用户名</th>
+				<th>邮  箱</th>
+				<th></th>
+			</tr>
+			{{ range .users }}
+			<tr data-id="{{.Id.Hex}}">
+				<td><img src="{{ .Avatar }}"> <span>{{.Name}}</span></td>
+				<td>{{ .Email }}</td>
+				<td>
+					<a href="/user/{{ .Id.Hex }}">查看</a>
+				</td>
+			</tr>
+			{{ end }}
+		</table>
+	</body>
+</html>

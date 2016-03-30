@@ -1,0 +1,10 @@
+{
+    "WorkingDir": "{GOPATH}/src/github.com/iguiyu/demo/docker/hello",
+    "SourceDir": [
+        "{GOPATH}/src/github.com/iguiyu/demo/docker/hello"
+    ],
+    "SourceExt": [".go"],
+    "BuildCmd": "go build -o autorun github.com/iguiyu/demo/docker/hello",
+    "RunCmd": "autorun",
+    "Decreasing": 2
+}

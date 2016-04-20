@@ -16,7 +16,7 @@ func CreateMenu(c *gin.Context) {
 	var btn1 menu.Button
 	btn1.SetAsScanCodeWaitMsgButton("扫码", "park")
 	var btn2 menu.Button
-	btn2.SetAsLocationSelectButton("车位号", "location")
+	btn2.SetAsLocationSelectButton("锁号", "number")
 	var btn3 menu.Button
 	btn3.SetAsClickButton("充值", "encharge")
 	var btn4 menu.Button

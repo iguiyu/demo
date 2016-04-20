@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"log"
+	"time"
 
-	"code.iguiyu.com/parking/wechat/handlers"
 	"github.com/chanxuehong/wechat.v2/mp/core"
 	"github.com/chanxuehong/wechat.v2/mp/menu"
 	"github.com/chanxuehong/wechat.v2/mp/message/callback/request"
@@ -13,23 +13,26 @@ import (
 
 func TextMsgHandler(ctx *core.Context) {
 	log.Printf("收到文本消息:\n%s\n", ctx.MsgPlaintext)
-	// re, err := json.Marshal(ctx)
-	// if err != nil {
-	//  fmt.Println(err)
-	// }
 
-	// fmt.Println(string(re))
-	// handlers.BoradcastMessage(string(re))
-	handlers.BoradcastMessage(string(ctx.MsgPlaintext))
+	BoradcastMessage(string(ctx.MsgPlaintext))
 
 	msg := request.GetText(ctx.MixedMsg)
+	if msg.Content == "是" {
+		re := "小鱼停车感谢您的信任，此次停车从" + time.Now().Format("2016-01-01 12:01:01") + "开始计费"
+		resp := response.NewText(msg.FromUserName, msg.ToUserName, msg.CreateTime, re)
+		ctx.RawResponse(resp) // 明文回复
+	} else if msg.Content == "否" {
+		re := "小鱼停车会继续努力，虔诚为您服务"
+		resp := response.NewText(msg.FromUserName, msg.ToUserName, msg.CreateTime, re)
+		ctx.RawResponse(resp) // 明文回复
+	} else {
+		// resp := response.NewText(msg.FromUserName, msg.ToUserName, msg.CreateTime, msg.Content)
+		articles := []response.Article{{Title: "title1", Description: "小鱼祝您生活愉快", PicURL: "https://iguiyu.com/images/car.png", URL: "https://iguiyu.com/"}}
+		resp := response.NewNews(msg.FromUserName, msg.ToUserName, msg.CreateTime, articles)
+		ctx.RawResponse(resp) // 明文回复
+		// ctx.AESResponse(resp, 0, "", nil) // aes密文回复
+	}
 
-	// resp := response.NewText(msg.FromUserName, msg.ToUserName, msg.CreateTime, msg.Content)
-	articles := []response.Article{{Title: "title1", Description: "description", PicURL: "https://www.baidu.com/img/bd_logo1.png", URL: "https://www.baidu.com/"}}
-
-	resp := response.NewNews(msg.FromUserName, msg.ToUserName, msg.CreateTime, articles)
-	ctx.RawResponse(resp) // 明文回复
-	// ctx.AESResponse(resp, 0, "", nil) // aes密文回复
 }
 
 func DefaultMsgHandler(ctx *core.Context) {

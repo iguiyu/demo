@@ -136,6 +136,6 @@ func main() {
 		router.POST("/user", userCreate)
 	}
 
-	log.Printf("Listening and serving http on %s\n", ":8080")
-	router.Run(":8080")
+	log.Printf("Listening and serving http on %s\n", ":8081")
+	router.Run(":8081")
 }

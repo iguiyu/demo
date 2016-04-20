@@ -1,0 +1,8 @@
+package global
+
+// Time (Mon Jan 2 15:04:05 2006)
+const (
+	TIME_LAYOUT_LONG    = `2006-01-02 15:04:05`
+	TIME_LAYOUT_DEFAULT = `2006-01-02 15:04`
+	TIME_LAYOUT_DATE    = `2006-01-02`
+)
